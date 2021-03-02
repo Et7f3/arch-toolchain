@@ -4,12 +4,18 @@
 set -euxo pipefail
 
 # Convention differ
-# TODO: Detect cmake
+rule=
+if test -f CMakeLists.txt
+then
+  cmake -S . -B . -DCMAKE_BUILD_TYPE=Release
+fi
 for file in ./autogen.sh ./bootstrap
 do
   if test -x $file
   then
     $file
+# In my project I always have a debug rule that add different sanitizers.
+    rule=debug
     break
   fi
 done
@@ -23,5 +29,4 @@ fi
 # We launch the configuration of the project
 ./configure
 
-# In my project I always have a debug rule that add different sanitizers.
-make debug
+make $rule
