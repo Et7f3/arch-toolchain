@@ -8,9 +8,9 @@ bsdtar -C / -xvf "$patched_glibc"
 
 RUN pacman -Syu --noconfirm git cmake clang automake autoconf dune gtest autoconf-archive boost gcc make flex bison
 
-RUN bsdtar -C / -xvf "$patched_glibc"
+# RUN bsdtar -C / -xvf "$patched_glibc"
 
-RUN git clone https://aur.archlinux.org/include-what-you-use.git && cd include-what-you-use && makepkg -Arcsi
+# RUN git clone https://aur.archlinux.org/include-what-you-use.git && cd include-what-you-use && makepkg -Arcsi
 
 RUN bsdtar -C / -xvf "$patched_glibc"
 
